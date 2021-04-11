@@ -3,7 +3,7 @@ import numpy as np
 import tensorflow as tf
 from Memory import Memory
 from Environment import Environment, GymWrapper
-from Agent import A2CAgent
+from Agents import A2CAgent
 from tensorflow import keras
 from Policies import Policy
 import h5py
