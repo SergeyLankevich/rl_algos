@@ -266,7 +266,7 @@ class DQNAgent(MemoryAgent):
         note = MemoryAgent.load(self, path, load_data=load_data)
         if load_model:
             with open(os.path.join(path, 'q_model.json'), 'r') as file:
-                self.q_model = model_from_json(file.read())
+                self.q_model = tf.keras.models.model_from_json(file.read())
             self.q_model.load_weights(os.path.join(path, 'q_weights.h5'))
             if self.enable_target:
                 self.target_q_model = keras.models.clone_model(self.q_model)
@@ -448,7 +448,7 @@ class PGAgent(MemoryAgent):
         note = MemoryAgent.load(self, path, load_data=load_data)
         if load_model:
             with open(os.path.join(path, 'a_model.json'), 'r') as file:
-                self.a_model = model_from_json(file.read())
+                self.a_model = tf.keras.models.model_from_json(file.read())
             self.a_model.load_weights(os.path.join(path, 'a_weights.h5'))
         return note
 
@@ -641,10 +641,10 @@ class A2CAgent(PGAgent):
             self, path, load_model=load_model, load_data=load_data)
         if load_model:
             with open(os.path.join(path, 'c_model.json'), 'r') as file:
-                self.c_model = model_from_json(
+                self.c_model = tf.keras.models.model_from_json(
                     file.read(), custom_objects=custom_objects
                 )
-            self.c_model.load_weights(os.path.join(path, 'cweights.h5'))
+            self.c_model.load_weights(os.path.join(path, 'c_weights.h5'))
         return note
 
     def save(self, path, save_model=True,
@@ -654,5 +654,5 @@ class A2CAgent(PGAgent):
         if save_model:
             with open(os.path.join(path, 'c_model.json'), 'w') as file:
                 file.write(self.c_model.to_json())
-            self.c_model.save_weights(os.path.join(path, 'cweights.h5'))
+            self.c_model.save_weights(os.path.join(path, 'c_weights.h5'))
         return path
