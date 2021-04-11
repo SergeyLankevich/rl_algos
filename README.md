@@ -9,4 +9,4 @@ agents - DQN, PG, A2C algorithms
 demo - preexecuted example of working A2C agent in MountainCar-v0;
 
 
-models - examples of succesful models
+models - examples of successful models
