@@ -83,5 +83,3 @@ result = env.run_episodes(
 )
 
 agent.save(save_dir, note=f'A2C_{result}')
-
-agent.load('trained_a2cagent_mountaincarv0', load_data=False)
